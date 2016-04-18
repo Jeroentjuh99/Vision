@@ -25,3 +25,11 @@ C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Ras
 C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Form1.resources
 C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Properties.Resources.resources
 C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csproj.GenerateResource.Cache
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\bin\Debug\Rasterizer.exe.config
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\bin\Debug\Rasterizer.exe
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\bin\Debug\Rasterizer.pdb
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.CanvasForm.resources
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Properties.Resources.resources
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csproj.GenerateResource.Cache
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.exe
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.pdb

@@ -8,7 +8,7 @@ namespace Rasterizer
 {
 	struct Matrix
 	{
-		float[,] data;
+		private float[,] data;
 
 		private Matrix(int size = 4)
 		{
@@ -29,22 +29,20 @@ namespace Rasterizer
 		public static Matrix perspective(float fov, float aspect, float zNear, float zFar)
 		{
             Matrix m = new Matrix(4);
-
             m.data[0, 0] = (float)(1 / Math.Tan(fov / 2) / aspect);
             m.data[1, 1] = (float)(1 / Math.Tan(fov / 2));
             m.data[2, 2] = (float)(zFar / (zFar - zNear));
             m.data[2, 3] = (float)((zNear * zFar) / (zFar - zNear));
             m.data[3, 2] = -1;
-
 			return m;
 		}
 
 		public static Matrix rotation(float angle, Vector3 axis)
 		{
-            double c, s, d;
-            c = Math.Cos(angle);
-            s = Math.Sin(angle);
-            d = 1 - c;
+            double c = Math.Cos(angle);
+            double s = Math.Sin(angle);
+            double d = 1 - c;
+
             Matrix m = new Matrix(4);
 
             m.data[0, 0] = (float)(Math.Pow(axis.x, 2) * d + c);
