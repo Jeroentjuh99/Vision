@@ -25,22 +25,63 @@ namespace Rasterizer
 		private void Form1_Load(object sender, EventArgs e)
 		{
             //initialise vertices & polygons here
-            vertices.Add(new Vector3(-1,-1,-1));
-            vertices.Add(new Vector3(1, -1, -1));
-            vertices.Add(new Vector3(1, 1, -1));
-            vertices.Add(new Vector3(-1, 1, -1));
-            vertices.Add(new Vector3(-1, -1, 1));
-            vertices.Add(new Vector3(1, -1, 1));
-            vertices.Add(new Vector3(1, 1, 1));
-            vertices.Add(new Vector3(-1, 1, 1));
 
-            polygons.Add(new List<int>() { 0, 1, 2, 3 });
-            polygons.Add(new List<int>() { 4, 5, 6, 7 });
-            polygons.Add(new List<int>() { 0, 1, 5, 4 });
-            polygons.Add(new List<int>() { 2, 3, 7, 6 });
+            /*int k = 0;
+            float y = 2;
+            double r = 1.5;
+            var varStep = 25;
+            var step = 2*Math.PI/varStep;
+            List<int> p1 = new List<int>();
+            List<int> p2 = new List<int>();
+
+            for (var theta = 0.0; theta < 4 * Math.PI; theta += step)
+            {
+                if(theta >= 2*Math.PI && y == 2)
+                {
+                    y = -2;
+                }
+
+                float x = (float)(r * Math.Cos(theta));
+                float z = (float)(r * Math.Sin(theta));           
+                vertices.Add(new Vector3(x, y, z));
+                if (k < varStep)
+                {
+                    p1.Add(k);
+                    polygons.Add(new List<int>() { k, k + varStep });
+                }
+                else
+                {
+                    p2.Add(k);
+                }
+                
+                k++;
+            }
+            polygons.Add(p1);
+            polygons.Add(p2);*/
+
+            int k = 0;
+            float y = 2;
+            double r = 1.5;
+            var varStep = 4;
+            var step = 2*Math.PI/varStep;
+            List<int> p = new List<int>();
+
+            vertices.Add(new Vector3(0, -2, 0));
+
+            for (var theta = 0.0; theta < 2 * Math.PI; theta += step)
+            {
+                k++;
+                float x = (float)(r * Math.Cos(theta));
+                float z = (float)(r * Math.Sin(theta));
+                vertices.Add(new Vector3(x, y, z));
+                polygons.Add(new List<int>() { 0, vertices.Count - 1 });
+                p.Add(k);
+            }
+            polygons.Add(p);
+
         }
 
-		private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
 		{
             rotation += 0.01f;
 			Invalidate();
@@ -55,8 +96,9 @@ namespace Rasterizer
 			g.Clear(Color.Black);
 
 			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-			Pen pen = new Pen(Color.DarkGreen, 5);
+			Pen pen = new Pen(Color.DarkGreen, 20);
 
+  /*
             for(int i = 0; i < vertices.Count; i++)
             {
                 Vector3 v = vertices[i];
@@ -71,7 +113,7 @@ namespace Rasterizer
                 g.DrawRectangle(pen, x - 5, y - 5, 10, 10);
   
              //   g.DrawLine(pen, x, y, vertices[i+1].x, vertices[i+1].y);
-            }
+            }*/
             
             foreach(var p in polygons)
             {

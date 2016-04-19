@@ -25,3 +25,12 @@ C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Ras
 C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Form1.resources
 C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Properties.Resources.resources
 C:\Users\jeroe\Desktop\vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csproj.GenerateResource.Cache
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\bin\Debug\Rasterizer.exe.config
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.exe
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.pdb
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\bin\Debug\Rasterizer.exe
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\bin\Debug\Rasterizer.pdb
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csprojResolveAssemblyReference.cache
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Form1.resources
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.Properties.Resources.resources
+C:\Users\titat_000\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csproj.GenerateResource.Cache
