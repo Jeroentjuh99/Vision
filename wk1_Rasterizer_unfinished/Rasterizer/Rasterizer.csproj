@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Figure\Cone.cs" />
     <Compile Include="Figure\Cylinder.cs" />
+    <Compile Include="Figure\obj.cs" />
     <Compile Include="Libary\Matrix.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="Figure\Cube.cs" />

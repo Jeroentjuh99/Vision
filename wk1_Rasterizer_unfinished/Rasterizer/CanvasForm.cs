@@ -12,12 +12,14 @@ namespace Rasterizer
         private Figure figure;
         private float rotation, rotationSpeed;
         private bool fillFlag;
+        private Vector3 rotationVector = new Vector3(0, 0, 0);
 
         public CanvasForm()
 		{
 			InitializeComponent();
 			DoubleBuffered = true;
-        }
+            Focus();
+		}
 
         private void Form1_Load(object sender, EventArgs e)
 		{
@@ -70,7 +72,7 @@ namespace Rasterizer
         {
             Matrix matr = Matrix.perspective((float)(Math.PI / 2), (float)Width / Height, 0.1f, 20f);
             Vector3 v = figure.verticeList[p[i]];
-            v = Matrix.rotation(rotation, new Vector3(0, 1, 0)) * v;
+            v = Matrix.rotation(rotation, rotationVector) * v;
             v = Matrix.translate(new Vector3(0, 0, -5)) * v;
             v = matr * v;
 
@@ -84,14 +86,20 @@ namespace Rasterizer
             switch (e.KeyCode)
             {
                 case Keys.Left:
+                    rotationVector = new Vector3(0, 1, 0);
                     rotationSpeed += 0.1f;
                     break;
                 case Keys.Right:
+                    rotationVector = new Vector3(0, 1, 0);
                     rotationSpeed -= 0.1f;
                     break;
                 case Keys.Up:
+                    rotationVector = new Vector3(1, 0, 0);
+                    rotationSpeed -= 0.1f;
                     break;
                 case Keys.Down:
+                    rotationVector = new Vector3(1, 0, 0);
+                    rotationSpeed += 0.1f;
                     break;
                 case Keys.Add:
                     switch (figure.GetType().Name)
