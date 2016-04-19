@@ -13,6 +13,8 @@ namespace Rasterizer
         private float rotation, rotationSpeed;
         private bool fillFlag;
         private Vector3 rotationVector = new Vector3(0, 0, 0);
+	    private int zoom = -5;
+	    private int xValue, yValue = 0;
 
         public CanvasForm()
 		{
@@ -65,19 +67,23 @@ namespace Rasterizer
             g.DrawString("3 - ", drawFont, drawBrush, 20, 80);
             g.DrawString("Cone", drawFont, drawBrush, 40, 80);
             g.DrawString("4 - ", drawFont, drawBrush, 20, 110);
-            g.DrawString("5 - ", drawFont, drawBrush, 20, 140);
+            g.DrawString("Obj file", drawFont, drawBrush, 40, 110);
+            g.DrawString("W,A,S,D,Q,E - ", drawFont, drawBrush, 20, 140);
+            g.DrawString("Rotate", drawFont, drawBrush, 120, 140);
+            g.DrawString("Z,X,C,V,B,N - ", drawFont, drawBrush, 20, 170);
+            g.DrawString("Move", drawFont, drawBrush, 115, 170);
         }
 
         private Point Rotate(List<int> p, int i)
         {
-            Matrix matr = Matrix.perspective((float)(Math.PI / 2), (float)Width / Height, 0.1f, 20f);
+            Matrix matr = Matrix.perspective((float)(Math.PI / 2), (float)Width / Height, 0.1f, 80f);
             Vector3 v = figure.verticeList[p[i]];
             v = Matrix.rotation(rotation, rotationVector) * v;
-            v = Matrix.translate(new Vector3(0, 0, -5)) * v;
+            v = Matrix.translate(new Vector3(0, 0, zoom)) * v;
             v = matr * v;
 
-            int x = (int)(Width / 2 + v.x / v.z * Width / 2);
-            int y = (int)(Height / 2 + v.y / v.z * Height / 2);
+            int x = (int)(Width / 2 + v.x / v.z * Width / 2) + xValue;
+            int y = (int)(Height / 2 + v.y / v.z * Height / 2) + yValue;
             return new Point(x,y);
         }
 
@@ -85,22 +91,33 @@ namespace Rasterizer
         {
             switch (e.KeyCode)
             {
-                case Keys.Left:
+                //rotation
+                case Keys.A:
                     rotationVector = new Vector3(0, 1, 0);
                     rotationSpeed += 0.1f;
                     break;
-                case Keys.Right:
+                case Keys.D:
                     rotationVector = new Vector3(0, 1, 0);
                     rotationSpeed -= 0.1f;
                     break;
-                case Keys.Up:
+                case Keys.W:
                     rotationVector = new Vector3(1, 0, 0);
                     rotationSpeed -= 0.1f;
                     break;
-                case Keys.Down:
+                case Keys.S:
                     rotationVector = new Vector3(1, 0, 0);
                     rotationSpeed += 0.1f;
                     break;
+                case Keys.Q:
+                    rotationVector = new Vector3(0, 0, 1);
+                    rotationSpeed -= 0.1f;
+                    break;
+                case Keys.E:
+                    rotationVector = new Vector3(0, 0, 1);
+                    rotationSpeed += 0.1f;
+                    break;
+
+                //add vertices
                 case Keys.Add:
                     switch (figure.GetType().Name)
                     {
@@ -123,6 +140,8 @@ namespace Rasterizer
                             break;
                     }
                     break;
+
+                //change shape
                 case Keys.D1:
                     figure = new Cube();
                     break;
@@ -132,7 +151,44 @@ namespace Rasterizer
                 case Keys.D3:
                     figure = new Cone();
                     break;
+                case Keys.D4:
+                    figure = new obj();
+                    break;
+
+                //zoom
+                case Keys.R:
+                    zoom += 1;
+                    break;
+                case Keys.F:
+                    zoom -= 1;
+                    break;
+                case Keys.T:
+                    zoom = -5;
+                    break;
+
+                //translate
+                case Keys.Z:
+                    xValue += 5;
+                    break;
+                case Keys.X:
+                    xValue -= 5;
+                    break;
+                case Keys.C:
+                    xValue = 0;
+                    break;
+                case Keys.V:
+                    yValue += 5;
+                    break;
+                case Keys.B:
+                    yValue -= 5;
+                    break;
+                case Keys.N:
+                    yValue = 0;
+                    break;
+
+                //default
                 default:
+                    rotationVector = new Vector3(0, 0, 0);
                     rotationSpeed = 0f;
                     break;
             }
