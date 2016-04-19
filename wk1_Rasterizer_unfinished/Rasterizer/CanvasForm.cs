@@ -55,9 +55,9 @@ namespace Rasterizer
             g.DrawString("1 - ", drawFont, drawBrush, 20, 20);
             g.DrawString("Cube ", drawFont, drawBrush, 40, 20);
             g.DrawString("2 - ", drawFont, drawBrush, 20, 50);
-            g.DrawString("Cylinder ", drawFont, drawBrush, 40, 20);
+            g.DrawString("Cylinder ", drawFont, drawBrush, 40, 50);
             g.DrawString("3 - ", drawFont, drawBrush, 20, 80);
-            g.DrawString("Cone", drawFont, drawBrush, 40, 20);
+            g.DrawString("Cone", drawFont, drawBrush, 40, 80);
             g.DrawString("4 - ", drawFont, drawBrush, 20, 110);
             g.DrawString("5 - ", drawFont, drawBrush, 20, 140);
         }
@@ -88,17 +88,17 @@ namespace Rasterizer
             else if (e.KeyCode == Keys.Up)
             {
                 rotationSpeed += 0;
-                if(figure.GetType() == typeof(Cylinder))
+                if(figure.GetType().Name == "Cylinder")
                 {
-                    new Cylinder(figure.verticeNumber + 1);
+                    figure = new Cylinder(figure.verticeNumber + 1);
                 }
             }
             else if (e.KeyCode == Keys.Down)
             {
                 rotationSpeed += 0;
-                if (figure.GetType() == typeof(Cylinder))
+                if (figure.GetType().Name == "Cylinder")
                 {
-                    new Cylinder(figure.verticeNumber + 1);
+                   figure = new Cylinder(figure.verticeNumber - 1);
                 }
             }
             else if (e.KeyCode == Keys.D1)

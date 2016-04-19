@@ -10,7 +10,7 @@ namespace Rasterizer.Models
     {
         private List<Vector3> vertices = new List<Vector3>();
         private List<List<int>> polygons = new List<List<int>>();
-        private int verticeNr;
+        private int verticeNr = 20;
 
         public List<Vector3> verticeList
         {
@@ -39,13 +39,14 @@ namespace Rasterizer.Models
         public Cylinder()
         {
             //Define Points
-            ReplaceVerticeNumber(20);
+            ReplaceVerticeNumber(verticeNr);
         }
 
         public Cylinder(int i)
         {
             //Define Points
             ReplaceVerticeNumber(i);
+            verticeNr = i;
         }
 
 
@@ -54,8 +55,8 @@ namespace Rasterizer.Models
             int k = 0;
             float y = 2;
             double r = 1.5;
-            var verticeNumber = nr;
-            var step = 2 * Math.PI / verticeNumber;
+            var varStep = nr;
+            var step = 2 * Math.PI / varStep;
             List<int> p1 = new List<int>();
             List<int> p2 = new List<int>();
 
@@ -68,10 +69,10 @@ namespace Rasterizer.Models
                 float x = (float)(r * Math.Cos(theta));
                 float z = (float)(r * Math.Sin(theta));
                 vertices.Add(new Vector3(x, y, z));
-                if (k < verticeNumber)
+                if (k < varStep)
                 {
                     p1.Add(k);
-                    polygons.Add(new List<int>() { k, k + verticeNumber });
+                    polygons.Add(new List<int>() { k, k + varStep });
                 }
                 else
                 {
