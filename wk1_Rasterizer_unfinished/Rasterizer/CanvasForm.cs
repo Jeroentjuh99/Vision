@@ -11,12 +11,12 @@ namespace Rasterizer
 
         private Figure figure;
         private float rotation, rotationSpeed;
+        private bool fillFlag;
 
         public CanvasForm()
 		{
 			InitializeComponent();
 			DoubleBuffered = true;
-            Focus();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,15 +38,19 @@ namespace Rasterizer
 			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             Pen pen = new Pen(Color.Goldenrod, 3);
             DrawLegend(g, pen);
-
-            foreach(var p in figure.polygonList)
+            DrawFigure(g, pen);
+		}
+     
+        private void DrawFigure(Graphics g, Pen pen)
+        {
+            foreach (var p in figure.polygonList)
             {
-                for(int i = 0; i < p.Count; i++)
+                for (int i = 0; i < p.Count; i++)
                 {
-                    g.DrawLine(pen, Rotate(p,i), Rotate(p,(i + 1) % p.Count));
+                    g.DrawLine(pen, Rotate(p, i), Rotate(p, (i + 1) % p.Count));
                 }
             }
-		}
+        }
 
         private void DrawLegend(Graphics g, Pen pen)
         {
@@ -92,6 +96,10 @@ namespace Rasterizer
                 {
                     figure = new Cylinder(figure.verticeNumber + 1);
                 }
+                else if (figure.GetType().Name == "Cone")
+                {
+                    figure = new Cone(figure.verticeNumber + 1);
+                }
             }
             else if (e.KeyCode == Keys.Down)
             {
@@ -99,6 +107,10 @@ namespace Rasterizer
                 if (figure.GetType().Name == "Cylinder")
                 {
                    figure = new Cylinder(figure.verticeNumber - 1);
+                }
+                else if (figure.GetType().Name == "Cone")
+                {
+                    figure = new Cone(figure.verticeNumber - 1);
                 }
             }
             else if (e.KeyCode == Keys.D1)
@@ -108,6 +120,10 @@ namespace Rasterizer
             else if (e.KeyCode == Keys.D2)
             {
                 figure = new Cylinder();
+            }
+            else if (e.KeyCode == Keys.D3)
+            {
+                figure = new Cone();
             }
         }
     }
