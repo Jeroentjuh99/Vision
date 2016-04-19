@@ -33,3 +33,4 @@ C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug
 C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csproj.GenerateResource.Cache
 C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.exe
 C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.pdb
+C:\Users\Richard\Documents\Vision\wk1_Rasterizer_unfinished\Rasterizer\obj\Debug\Rasterizer.csprojResolveAssemblyReference.cache

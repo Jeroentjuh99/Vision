@@ -1,12 +1,7 @@
 ﻿using Rasterizer.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Rasterizer
@@ -20,10 +15,11 @@ namespace Rasterizer
         public CanvasForm()
 		{
 			InitializeComponent();
-			this.DoubleBuffered = true;
-		}
+			DoubleBuffered = true;
+            Focus();
+        }
 
-		private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
 		{
             //initialise vertices & polygons here
             figure = new Cube();    //Load Cube
@@ -43,8 +39,6 @@ namespace Rasterizer
             Pen pen = new Pen(Color.Goldenrod, 3);
             DrawLegend(g, pen);
 
-  
-
             foreach(var p in figure.polygonList)
             {
                 for(int i = 0; i < p.Count; i++)
@@ -61,7 +55,9 @@ namespace Rasterizer
             g.DrawString("1 - ", drawFont, drawBrush, 20, 20);
             g.DrawString("Cube ", drawFont, drawBrush, 40, 20);
             g.DrawString("2 - ", drawFont, drawBrush, 20, 50);
+            g.DrawString("Cylinder ", drawFont, drawBrush, 40, 20);
             g.DrawString("3 - ", drawFont, drawBrush, 20, 80);
+            g.DrawString("Cone", drawFont, drawBrush, 40, 20);
             g.DrawString("4 - ", drawFont, drawBrush, 20, 110);
             g.DrawString("5 - ", drawFont, drawBrush, 20, 140);
         }
@@ -89,13 +85,29 @@ namespace Rasterizer
             {
                 rotationSpeed += -0.02f;
             }
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            else if (e.KeyCode == Keys.Up)
             {
-                rotationSpeed = 0;
+                rotationSpeed += 0;
+                if(figure.GetType() == typeof(Cylinder))
+                {
+                    new Cylinder(figure.verticeNumber + 1);
+                }
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                rotationSpeed += 0;
+                if (figure.GetType() == typeof(Cylinder))
+                {
+                    new Cylinder(figure.verticeNumber + 1);
+                }
             }
             else if (e.KeyCode == Keys.D1)
             {
                 figure = new Cube();
+            }
+            else if (e.KeyCode == Keys.D2)
+            {
+                figure = new Cylinder();
             }
         }
     }

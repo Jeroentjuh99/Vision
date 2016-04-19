@@ -10,5 +10,6 @@ namespace Rasterizer
     {
         List<Vector3> verticeList { get; } 
         List<List<int>> polygonList { get; }
+        int verticeNumber { get; }
     }
 }

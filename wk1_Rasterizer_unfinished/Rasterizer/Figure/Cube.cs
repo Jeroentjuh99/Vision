@@ -27,6 +27,15 @@ namespace Rasterizer.Models
             }
         }
 
+        public int verticeNumber
+        {
+            get
+            {
+                return verticeNumber;
+            }
+        }
+
+
         public Cube()
         {
             //Define Cube Points
