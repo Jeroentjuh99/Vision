@@ -77,37 +77,35 @@ namespace Rasterizer
 
         private void CanvasForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            switch (e.KeyCode)
             {
-                rotationSpeed += 0.02f;
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                rotationSpeed += -0.02f;
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                rotationSpeed += 0;
-                if(figure.GetType().Name == "Cylinder")
-                {
-                    figure = new Cylinder(figure.verticeNumber + 1);
-                }
-            }
-            else if (e.KeyCode == Keys.Down)
-            {
-                rotationSpeed += 0;
-                if (figure.GetType().Name == "Cylinder")
-                {
-                   figure = new Cylinder(figure.verticeNumber - 1);
-                }
-            }
-            else if (e.KeyCode == Keys.D1)
-            {
-                figure = new Cube();
-            }
-            else if (e.KeyCode == Keys.D2)
-            {
-                figure = new Cylinder();
+                case Keys.Left:
+                    rotationSpeed += 0.1f;
+                    break;
+                case Keys.Right:
+                    rotationSpeed -= 0.1f;
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Add:
+                    if (figure.GetType().Name == "Cylinder")
+                        figure = new Cylinder(figure.verticeNumber + 1);
+                    break;
+                case Keys.Subtract:
+                    if (figure.GetType().Name == "Cylinder")
+                        figure = new Cylinder(figure.verticeNumber - 1);
+                    break;
+                case Keys.D1:
+                    figure = new Cube();
+                    break;
+                case Keys.D2:
+                    figure = new Cylinder();
+                    break;
+                default:
+                    rotationSpeed = 0f;
+                    break;
             }
         }
     }
