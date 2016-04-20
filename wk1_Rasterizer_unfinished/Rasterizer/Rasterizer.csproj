@@ -52,12 +52,12 @@
     <Compile Include="CanvasForm.Designer.cs">
       <DependentUpon>CanvasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Figure\Cone.cs" />
-    <Compile Include="Figure\Cylinder.cs" />
-    <Compile Include="Figure\obj.cs" />
+    <Compile Include="Models\Cone.cs" />
+    <Compile Include="Models\Cylinder.cs" />
+    <Compile Include="Models\obj.cs" />
     <Compile Include="Libary\Matrix.cs" />
     <Compile Include="Figure.cs" />
-    <Compile Include="Figure\Cube.cs" />
+    <Compile Include="Models\Cube.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Libary\Vector3.cs" />

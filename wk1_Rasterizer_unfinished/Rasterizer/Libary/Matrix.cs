@@ -1,74 +1,83 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Rasterizer
+namespace Rasterizer.Libary
 {
+    // ReSharper disable once ArrangeTypeModifiers
 	struct Matrix
 	{
-		private float[,] data;
+	    // ReSharper disable once FieldCanBeMadeReadOnly.Local
+		private float[,] _data;
 
 		private Matrix(int size = 4)
 		{
-			data = new float[size, size];
+			_data = new float[size, size];
 		}
 
 
-		public static Matrix identity()
+		public static Matrix Identity()
 		{
-			Matrix m = new Matrix(4);
-			m.data[0,0] = 1;
-			m.data[1,1] = 1;
-			m.data[2,2] = 1;
-			m.data[3,3] = 1;
-			return m;
+		    var m = new Matrix(4)
+		    {
+		        _data =
+		        {
+		            [0, 0] = 1,
+		            [1, 1] = 1,
+		            [2, 2] = 1,
+		            [3, 3] = 1
+		        }
+		    };
+		    return m;
 		}
 
-		public static Matrix perspective(float fov, float aspect, float zNear, float zFar)
+		public static Matrix Perspective(float fov, float aspect, float zNear, float zFar)
 		{
-            Matrix m = new Matrix(4);
-            m.data[0, 0] = (float)(1 / Math.Tan(fov / 2) / aspect);
-            m.data[1, 1] = (float)(1 / Math.Tan(fov / 2));
-            m.data[2, 2] = (float)(zFar / (zFar - zNear));
-            m.data[2, 3] = (float)((zNear * zFar) / (zFar - zNear));
-            m.data[3, 2] = -1;
-			return m;
+		    var m = new Matrix(4)
+		    {
+		        _data =
+		        {
+		            [0, 0] = (float) (1/Math.Tan(fov/2)/aspect),
+		            [1, 1] = (float) (1/Math.Tan(fov/2)),
+		            [2, 2] = (float) (zFar/(zFar - zNear)),
+		            [2, 3] = (float) ((zNear*zFar)/(zFar - zNear)),
+		            [3, 2] = -1
+		        }
+		    };
+		    return m;
 		}
 
-		public static Matrix rotation(float angle, Vector3 axis)
+		public static Matrix Rotation(float angle, Vector3 axis)
 		{
-            double c = Math.Cos(angle);
-            double s = Math.Sin(angle);
-            double d = 1 - c;
+		    var c = Math.Cos(angle);
+            var s = Math.Sin(angle);
+            var d = 1 - c;
 
-            Matrix m = new Matrix(4);
+		    var m = new Matrix(4)
+		    {
+		        _data =
+		        {
+		            [0, 0] = (float) (Math.Pow(axis.X, 2)*d + c),
+		            [0, 1] = (float) (axis.X*axis.Y*d - axis.Z*s),
+		            [0, 2] = (float) (axis.X*axis.Z*d + axis.Y*s),
+		            [1, 0] = (float) (axis.X*axis.Y*d + axis.Z*s),
+		            [1, 1] = (float) (Math.Pow(axis.Y, 2)*d + c),
+		            [1, 2] = (float) (axis.Y*axis.Z*d - axis.X*s),
+		            [2, 0] = (float) (axis.X*axis.Z*d - axis.Y*s),
+		            [2, 1] = (float) (axis.Y*axis.Z*d + axis.X*s),
+		            [2, 2] = (float) (Math.Pow(axis.Z, 2)*d + c),
+		            [3, 3] = 1
+		        }
+		    };
 
-            m.data[0, 0] = (float)(Math.Pow(axis.x, 2) * d + c);
-            m.data[0, 1] = (float)(axis.x * axis.y * d - axis.z * s);
-            m.data[0, 2] = (float)(axis.x * axis.z * d + axis.y * s);
-
-            m.data[1, 0] = (float)(axis.x * axis.y * d + axis.z * s);
-            m.data[1, 1] = (float)(Math.Pow(axis.y, 2) * d + c);
-            m.data[1, 2] = (float)(axis.y * axis.z * d - axis.x * s);
-
-            m.data[2, 0] = (float)(axis.x * axis.z * d - axis.y * s);
-            m.data[2, 1] = (float)(axis.y * axis.z * d + axis.x * s);
-            m.data[2, 2] = (float)(Math.Pow(axis.z, 2) * d + c);
-
-            m.data[3, 3] = 1;
-
-            return m;
+		    return m;
 		}
 
-		public static Matrix translate(Vector3 offset)
+		public static Matrix Translate(Vector3 offset)
 		{
-            Matrix m = identity();
+            var m = Identity();
             
-            for(int i = 0; i < 3; i++)
+            for(var i = 0; i < 3; i++)
             {
-                m.data[i, 3] = offset.data[i];
+                m._data[i, 3] = offset.Data[i];
             }
             return m;
 		}
@@ -77,13 +86,13 @@ namespace Rasterizer
 
 		public static Vector3 operator * (Matrix mat, Vector3 vec)
 		{
-            Vector3 v = new Vector3(0, 0, 0);
+            var v = new Vector3(0, 0, 0);
 
-                for(int i = 0; i < 3; i++)
+                for(var i = 0; i < 3; i++)
                 {
-                    for(int ii = 0; ii < 4; ii++)
+                    for(var ii = 0; ii < 4; ii++)
                     {
-                        v.data[i] += mat.data[i,ii] * vec.data[ii];
+                        v.Data[i] += mat._data[i,ii] * vec.Data[ii];
                     }
                 }
             return v;
@@ -91,16 +100,16 @@ namespace Rasterizer
 
 		public static Matrix operator * (Matrix mat1, Matrix mat2)
 		{
-            Matrix m = mat1;
+            var m = mat1;
 
-            for(int r = 0; r < 4; r++)
+            for(var r = 0; r < 4; r++)
             {
-                for(int y = 0; y < 4; y++)
+                for(var y = 0; y < 4; y++)
                 {
-                    m.data[r, y] = 0;
-                    for (int k = 0; k < 4; k++)
+                    m._data[r, y] = 0;
+                    for (var k = 0; k < 4; k++)
                     {
-                        m.data[r,y] += (mat1.data[r,k] * mat2.data[k,y]);
+                        m._data[r,y] += (mat1._data[r,k] * mat2._data[k,y]);
                     }
                 }
             }
