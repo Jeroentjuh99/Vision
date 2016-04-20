@@ -15,6 +15,8 @@ namespace Rasterizer
         private Vector3 rotationVector = new Vector3(0, 0, 0);
 	    private int zoom = -5;
 	    private int xValue, yValue = 0;
+	    private Color backround = Color.FromArgb(54, 54, 54);
+        private Color penColor = Color.Goldenrod;
 
         public CanvasForm()
 		{
@@ -38,9 +40,9 @@ namespace Rasterizer
 		private void Canvas_Paint(object sender, PaintEventArgs e)
 		{
             var g = e.Graphics;
-			g.Clear(Color.FromArgb(54,54,54));
+			g.Clear(backround);
 			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            Pen pen = new Pen(Color.Goldenrod, 3);
+            Pen pen = new Pen(penColor, 3);
             DrawLegend(g, pen);
             DrawFigure(g, pen);
 		}
@@ -72,6 +74,8 @@ namespace Rasterizer
             g.DrawString("Rotate", drawFont, drawBrush, 120, 140);
             g.DrawString("Z,X,C,V,B,N - ", drawFont, drawBrush, 20, 170);
             g.DrawString("Move", drawFont, drawBrush, 115, 170);
+            g.DrawString("K,L - ", drawFont, drawBrush, 20, 200);
+            g.DrawString("Change color", drawFont, drawBrush, 55, 200);
         }
 
         private Point Rotate(List<int> p, int i)
@@ -86,6 +90,17 @@ namespace Rasterizer
             int y = (int)(Height / 2 + v.y / v.z * Height / 2) + yValue;
             return new Point(x,y);
         }
+
+	    private void changeColor(bool foreground)
+	    {
+            ColorDialog dialog = new ColorDialog();
+	        DialogResult r = dialog.ShowDialog();
+	        if (r != DialogResult.OK) return;
+	        if (!foreground)
+	            backround = dialog.Color;
+	        else
+	            penColor = dialog.Color;
+	    }
 
         private void CanvasForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -127,6 +142,8 @@ namespace Rasterizer
                         case "Cone":
                             figure = new Cone(figure.verticeNumber + 1);
                             break;
+                        default:
+                            break;
                     }
                     break;
                 case Keys.Subtract:
@@ -137,6 +154,8 @@ namespace Rasterizer
                             break;
                         case "Cone":
                             figure = new Cone(figure.verticeNumber - 1);
+                            break;
+                        default:
                             break;
                     }
                     break;
@@ -186,6 +205,14 @@ namespace Rasterizer
                     yValue = 0;
                     break;
 
+                //color
+                case Keys.K:
+                    changeColor(true);
+                    break;
+                case Keys.L:
+                    changeColor(false);
+                    break;
+                   
                 //default
                 default:
                     rotationVector = new Vector3(0, 0, 0);
