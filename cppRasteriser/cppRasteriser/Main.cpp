@@ -26,7 +26,7 @@
 	
 	void ReshapeWindow(int, int);
 
-	void KeyEvent(int, int, int);
+	void KeyEvent(unsigned char, int, int);
 	void MouseMotionEvent(int, int);
 
 
@@ -63,7 +63,7 @@
 		}
 		else
 		{
-			glOrtho(-1.0f*(width/height), 1.0f*(width/height), -1.0f, 1.0f, -1.0f, 1.0f);
+			glOrtho(-3.0f*(width/height), 3.0f*(width/height), -3.0f, 3.0f, 0.1f, 100);
 		}
 
 		glMatrixMode(GL_MODELVIEW);
@@ -146,6 +146,9 @@
 			break;
 		case GLUT_KEY_F2:
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			break;
+		case GLUT_KEY_F3:
+			perspectiveFlag = !perspectiveFlag;
 			break;
 		}
 
