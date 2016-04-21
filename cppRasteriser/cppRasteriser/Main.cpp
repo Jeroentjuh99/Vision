@@ -4,10 +4,6 @@
 
 #include "GL/freeglut.h"
 #include "Cube.h"
-#include <stdio.h>
-#include <iostream>
-
-using namespace std;
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
