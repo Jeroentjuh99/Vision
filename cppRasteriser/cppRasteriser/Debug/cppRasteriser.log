@@ -1,0 +1,2 @@
+﻿Main.obj : error LNK2005: "struct Color_c color_c" (?color_c@@3UColor_c@@A) already defined in cubecpp.obj
+C:\Users\jeroe\Desktop\map\school\Vision\cppRasteriser\Debug\cppRasteriser.exe : fatal error LNK1169: one or more multiply defined symbols found
