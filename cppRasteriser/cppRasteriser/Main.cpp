@@ -1,17 +1,183 @@
+/*-------------------------------------------------------------------------*/
+/*				INCLUDES						                           */
+/*-------------------------------------------------------------------------*/
+
 #include "GL/freeglut.h"
-#include "cube.h"
-#include "main.h"
+#include "Cube.h"
+#include <stdio.h>
+#include <iostream>
 
-void Display(void);
-void Keyboard(unsigned char, int, int);
-void Idle(void);
-void reshape(int, int);
-void mouseEvent(int, int);
+using namespace std;
 
-float width = 800;
-float height = 600;
-double rotateX, rotateY, rotateZ = 0;
-double r, g, b = 70;
+/*-------------------------------------------------------------------------*/
+/*				Local Variable                                             */
+/*-------------------------------------------------------------------------*/
+
+	float width = 800;
+	float height = 600;
+	float rotateX, rotateY, rotateZ = 0.0f;
+	double trX, trY = 0;
+	bool perspectiveFlag = true;
+	Cube c1, c2, c3, c4;
+
+/*-------------------------------------------------------------------------*/
+/*				Function Prototyping                                       */
+/*-------------------------------------------------------------------------*/
+
+	void Idle(void);
+	void SetupWindow(void);
+	void PaintComponent(void);
+	
+	void ReshapeWindow(int, int);
+
+	void KeyEvent(int, int, int);
+	void MouseMotionEvent(int, int);
+
+
+/*-------------------------------------------------------------------------*/
+/*              Start Code												   */
+/*-------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------*/
+/*              -- Window Functions										   */
+/*-------------------------------------------------------------------------*/
+
+	
+	void Idle(void)
+	{
+		rotateY += 0.01f;
+		rotateX += 0.01f;
+		rotateZ += 0.01f;
+		glutPostRedisplay();
+	}
+
+	void SetupWindow(void)
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+
+		glViewport(0, 0, width, height);
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+
+		if (perspectiveFlag == true)
+		{
+			gluPerspective(90, (width/height), 0.1f, 100);
+		}
+		else
+		{
+			glOrtho(-1.0f*(width/height), 1.0f*(width/height), -1.0f, 1.0f, -1.0f, 1.0f);
+		}
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
+		gluLookAt(0, 0, -4,
+			0, 0, 0,
+			0, 1, 0);
+	}
+
+	void PaintComponent(void)
+	{
+		// Reset window
+		SetupWindow();
+		
+		// Cube 1
+		glPushMatrix();
+			glTranslated(-3, 0, 0);
+			glRotatef(rotateX, 1.0f, 0.0f, 0.0f);
+			c1.draw();
+		glPopMatrix();
+
+		// Cube 2
+		glPushMatrix();
+			glTranslated(0, 0, 0);
+			glRotatef(rotateY, 0.0f, 1.0f, 0.0f);
+			c2.draw();
+		glPopMatrix();
+
+		// Cube 3
+		glPushMatrix();
+			glTranslated(3, 0, 0);
+			glRotatef(rotateZ, 0.0, 0.0, 1.0);
+			c3.draw();
+		glPopMatrix();
+
+		// Cube 4
+		glPushMatrix();
+			glTranslated(trX, trY, 4);
+			glRotatef(rotateZ, 0.0, 0.0, 1.0);
+			glRotatef(rotateY, 0.0, 1.0, 0.0);
+			glRotatef(rotateX, 1.0, 0.0, 0.0);
+			c4.draw();
+		glPopMatrix();
+
+		glFlush();
+		glutSwapBuffers();
+	}
+	
+	void ReshapeWindow(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+
+
+/*-------------------------------------------------------------------------*/
+/*              -- Event Handlers										   */
+/*-------------------------------------------------------------------------*/
+
+	void SpecialKeyEvent(int key, int mouseX, int mouseY)
+	{
+
+		switch (key)
+		{
+		case GLUT_KEY_UP:
+			trY += 0.1;
+			break;
+		case GLUT_KEY_DOWN:
+			trY -= 0.1;
+			break;
+		case GLUT_KEY_LEFT:
+			trX += 0.1;
+			break;
+		case GLUT_KEY_RIGHT:
+			trX -= 0.1;
+			break;
+		case GLUT_KEY_F1:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			break;
+		case GLUT_KEY_F2:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			break;
+		}
+
+		glutPostRedisplay();
+	}
+
+	void KeyEvent(unsigned char key, int mouseX, int mouseY)
+	{
+
+		if (key == 27)
+		{
+			exit(0);
+		}
+		else if (key == 32)
+		{
+			perspectiveFlag = !perspectiveFlag;
+		}
+
+		glutPostRedisplay();
+	}
+
+	void MouseMotionEvent(int x, int y)
+	{
+		c1.setColor(Cube::FRONT, RGBColor((x / width), (y / height), (x / width - y / height)));
+		c1.setColor(Cube::TOP, RGBColor((x / width), (y / height), (x / width - y / height)));
+		c1.setColor(Cube::BOTTOM, RGBColor((x / width), (y / height), (x / width - y / height)));
+	}
+
 
 
 int main(int argc, char *argv[])
@@ -19,96 +185,28 @@ int main(int argc, char *argv[])
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize((int)width, (int)height);
 	glutInit(&argc, argv);
-	glutCreateWindow("hurrr blurrr durr");
+	glutCreateWindow("3D Objects");
+		
 	glEnable(GL_DEPTH_TEST);
-	glutDisplayFunc(Display);
-	glutKeyboardFunc(Keyboard);
-	glutReshapeFunc(reshape);
+
 	glutIdleFunc(Idle);
-	glutMotionFunc(mouseEvent);
+	glutDisplayFunc(PaintComponent);
+	glutReshapeFunc(ReshapeWindow);
+
+	glutSpecialFunc(SpecialKeyEvent);
+	glutKeyboardFunc(KeyEvent);
+	glutMotionFunc(MouseMotionEvent);
+
+	c4.setColor(Cube::FRONT,RGBColor(255,0,255));
+
 	glutMainLoop();
 	return 0;
 }
 
-void Display(void)
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.45f, 0.45f, 0.45f, 0.7f);
 
-	glViewport(0, 0, width, height);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(90, (width/height), 0.1f, 100);
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 
-	gluLookAt(0, 0, -4,
-		0, 0, 0,
-		0, 1, 0);
 
-	glPushMatrix();
-	glTranslated(-3, 0, 0);
-	glRotatef(rotateX, 1.0, 0.0, 0.0);
-	draw();
-	glPopMatrix();
-	
-	glPushMatrix();
-	glTranslated(0, 0, 0);
-	glRotatef(rotateY, 0.0, 1.0, 0.0);
-	draw();
-	glPopMatrix();
-	
-	glPushMatrix();
-	glTranslated(3, 0, 0);
-	glRotatef(rotateZ, 0.0, 0.0, 1.0);
-	draw();
-	glPopMatrix();
 
-	glPushMatrix();
-	glTranslated(0, 0.5, 4);
-	glScaled(2.5, 2.5, 2.5);
-	glRotatef(rotateZ, 0.0, 0.0, 1.0);
-	glRotatef(rotateY, 0.0, 1.0, 0.0);
-	glRotatef(rotateX, 1.0, 0.0, 0.0);
-	draw(r,g,b);
-	glPopMatrix();
 
-	
-	glFlush();
-
-	glutSwapBuffers();
-}
-
-void Idle()
-{
-	rotateY += 0.05;
-	rotateX += 0.05;
-	rotateZ += 0.05;
-	glutPostRedisplay();
-}
-
-void Keyboard(unsigned char key, int mouseX, int mouseY)
-{
-	if(key == 27)
-	{
-		exit(0);
-	} 
-
-	//  Request display update
-	glutPostRedisplay();
-}
-
-void reshape(int w, int h)
-{
-	width = w;
-	height = h;
-}
-
-void mouseEvent(int x, int y)
-{
-	r = x / width;
-	g = y / height;
-	b = x/width - y/height;
-}
