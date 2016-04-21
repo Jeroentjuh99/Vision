@@ -19,7 +19,7 @@
 
 		// White side - BACK
 		glBegin(GL_POLYGON);
-//		glColor3f(1.0, 1.0, 1.0);
+		glColor3f(1.0, 1.0, 1.0);
 		glVertex3f(0.5, -0.5, 0.5);
 		glVertex3f(0.5, 0.5, 0.5);
 		glVertex3f(-0.5, 0.5, 0.5);
@@ -28,7 +28,7 @@
 
 		// Purple side - RIGHT
 		glBegin(GL_POLYGON);
-//		glColor3f(1.0, 0.0, 1.0);
+		glColor3f(1.0, 0.0, 1.0);
 		glVertex3f(0.5, -0.5, -0.5);
 		glVertex3f(0.5, 0.5, -0.5);
 		glVertex3f(0.5, 0.5, 0.5);
@@ -37,7 +37,7 @@
 
 		// Green side - LEFT
 		glBegin(GL_POLYGON);
-//		glColor3f(0.0, 1.0, 0.0);
+		glColor3f(0.0, 1.0, 0.0);
 		glVertex3f(-0.5, -0.5, 0.5);
 		glVertex3f(-0.5, 0.5, 0.5);
 		glVertex3f(-0.5, 0.5, -0.5);
@@ -46,7 +46,7 @@
 
 		// Blue side - TOP
 		glBegin(GL_POLYGON);
-//		glColor3f(0.0, 0.0, 1.0);
+		glColor3f(0.0, 0.0, 1.0);
 		glVertex3f(0.5, 0.5, 0.5);
 		glVertex3f(0.5, 0.5, -0.5);
 		glVertex3f(-0.5, 0.5, -0.5);
@@ -55,7 +55,7 @@
 
 		// Red side - BOTTOM
 		glBegin(GL_POLYGON);
-//		glColor3f(1.0, 0.0, 0.0);
+		glColor3f(1.0, 0.0, 0.0);
 		glVertex3f(0.5, -0.5, -0.5);
 		glVertex3f(0.5, -0.5, 0.5);
 		glVertex3f(-0.5, -0.5, 0.5);

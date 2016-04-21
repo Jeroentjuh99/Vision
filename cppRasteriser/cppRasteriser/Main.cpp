@@ -67,9 +67,11 @@ void Display(void)
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslated(0, 0, 4);
+	glTranslated(0, 0.5, 4);
 	glScaled(2.5, 2.5, 2.5);
-//	glRotatef(rotateZ, 0.0, 0.0, 1.0);
+	glRotatef(rotateZ, 0.0, 0.0, 1.0);
+	glRotatef(rotateY, 0.0, 1.0, 0.0);
+	glRotatef(rotateX, 1.0, 0.0, 0.0);
 	draw(r,g,b);
 	glPopMatrix();
 
@@ -106,7 +108,7 @@ void reshape(int w, int h)
 
 void mouseEvent(int x, int y)
 {
-	r = x;
-	g = y;
-	b = x - y;
+	r = x / width;
+	g = y / height;
+	b = x/width - y/height;
 }

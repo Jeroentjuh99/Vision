@@ -1,2 +1,11 @@
-﻿Main.obj : error LNK2005: "struct Color_c color_c" (?color_c@@3UColor_c@@A) already defined in cubecpp.obj
-C:\Users\jeroe\Desktop\map\school\Vision\cppRasteriser\Debug\cppRasteriser.exe : fatal error LNK1169: one or more multiply defined symbols found
+﻿  Main.cpp
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(38): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(53): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(65): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(72): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(73): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(74): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(105): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(106): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  cppRasteriser.vcxproj -> C:\Users\jeroe\Desktop\map\school\Vision\cppRasteriser\Debug\cppRasteriser.exe
