@@ -11,13 +11,13 @@ void mouseEvent(int, int);
 float width = 800;
 float height = 600;
 double rotateX, rotateY, rotateZ = 0;
-struct Color_c c;
+double r, g, b = 70;
 
 
 int main(int argc, char *argv[])
 {
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(width, height);
+	glutInitWindowSize((int)width, (int)height);
 	glutInit(&argc, argv);
 	glutCreateWindow("hurrr blurrr durr");
 	glEnable(GL_DEPTH_TEST);
@@ -51,34 +51,29 @@ void Display(void)
 	glPushMatrix();
 	glTranslated(-3, 0, 0);
 	glRotatef(rotateX, 1.0, 0.0, 0.0);
-	draw(c);
+	draw();
 	glPopMatrix();
-
 	
-
 	glPushMatrix();
 	glTranslated(0, 0, 0);
 	glRotatef(rotateY, 0.0, 1.0, 0.0);
-	draw(c);
+	draw();
 	glPopMatrix();
-
 	
-
 	glPushMatrix();
 	glTranslated(3, 0, 0);
 	glRotatef(rotateZ, 0.0, 0.0, 1.0);
-	draw(c);
+	draw();
 	glPopMatrix();
-
 
 	glPushMatrix();
 	glTranslated(0, 0, 4);
 	glScaled(2.5, 2.5, 2.5);
 //	glRotatef(rotateZ, 0.0, 0.0, 1.0);
-	draw(c);
+	draw(r,g,b);
 	glPopMatrix();
 
-
+	
 	glFlush();
 
 	glutSwapBuffers();
@@ -111,7 +106,7 @@ void reshape(int w, int h)
 
 void mouseEvent(int x, int y)
 {
-	c.r = x;
-	c.g = y;
-	c.b = x - y;
+	r = x;
+	g = y;
+	b = x - y;
 }

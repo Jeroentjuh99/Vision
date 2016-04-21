@@ -1,3 +1,3 @@
 #pragma once
-#include "main.h"
-void draw(Color_c);
+void draw(void);
+void draw(double, double, double);

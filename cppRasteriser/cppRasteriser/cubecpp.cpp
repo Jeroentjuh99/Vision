@@ -1,11 +1,16 @@
 #include "cube.h"
-#include "GL/freeglut.h"
+#include <GL/freeglut.h>
 
-	void draw(Color_c c)
+	void draw()
+	{
+		draw(20, 20, 20);
+	}
+
+	void draw(double r, double g, double b)
 	{
 		// Orange side - FRONT
 		glBegin(GL_POLYGON);
-		glColor3f(c.r, c.g, c.b);
+		glColor3f(r, g, b);
 		glVertex3f(0.5, -0.5, -0.5);
 		glVertex3f(0.5, 0.5, -0.5);
 		glVertex3f(-0.5, 0.5, -0.5);
