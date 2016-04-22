@@ -10,7 +10,7 @@ class Cube
 public:
 	enum Side { FRONT, BACK, LEFT, RIGHT, TOP, BOTTOM };
 	Cube();
-	Cube(float s);
+	Cube(float);
 
 	RGBColor getColor(Side cSide);
 	void setColor(Side cSide, RGBColor colorValue);

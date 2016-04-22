@@ -16,15 +16,15 @@ void RGBColor::setRGBColor(float r, float g, float b)
 	blue = b;
 }
 
-float RGBColor::getRed()
+float RGBColor::getRed() const
 {
 	return red;
 }
-float RGBColor::getGreen()
+float RGBColor::getGreen() const
 {
 	return green;
 }
-float RGBColor::getBlue()
+float RGBColor::getBlue() const
 {
 	return blue;
 }

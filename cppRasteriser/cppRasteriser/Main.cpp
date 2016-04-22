@@ -15,6 +15,7 @@
 	double trX, trY = 0;
 	bool perspectiveFlag = true;
 	Cube c1, c2, c3, c4;
+	GLenum mode = GL_LINE;
 
 /*-------------------------------------------------------------------------*/
 /*				Function Prototyping                                       */
@@ -78,6 +79,8 @@
 	{
 		// Reset window
 		SetupWindow();
+
+		glPolygonMode(GL_FRONT_AND_BACK, mode);
 		
 		// Cube 1
 		glPushMatrix();
@@ -142,12 +145,16 @@
 			trX -= 0.1;
 			break;
 		case GLUT_KEY_F1:
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			if(mode == GL_LINE)
+			{
+				mode = GL_FILL;
+			}
+			else
+			{
+				mode = GL_LINE;
+			}
 			break;
 		case GLUT_KEY_F2:
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			break;
-		case GLUT_KEY_F3:
 			perspectiveFlag = !perspectiveFlag;
 			break;
 		}
@@ -182,7 +189,7 @@
 int main(int argc, char *argv[])
 {
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize((int)width, (int)height);
+	glutInitWindowSize(int(width), int(height));
 	glutInit(&argc, argv);
 	glutCreateWindow("3D Objects");
 		

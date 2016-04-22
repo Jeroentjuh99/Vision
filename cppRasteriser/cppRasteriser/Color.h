@@ -12,9 +12,9 @@ public:
 	RGBColor(float r, float g, float b);
 	void setRGBColor(float r, float g, float b);
 
-	float getRed();
-	float getGreen();
-	float getBlue();
+	float getRed() const;
+	float getGreen() const;
+	float getBlue() const;
 private:
 	float red;
 	float green;
