@@ -15,11 +15,11 @@
 /*				Local Variable                                             */
 /*-------------------------------------------------------------------------*/
 
-	float width = 800;
-	float height = 600;
+	float width = 800, height = 600;
 	float lastFrameTime = 0;
 	bool keys[255];
-
+	int lastX, lastY = 0;
+	bool jump = false;
 	std::vector<Cube> cubeList;
 
 	struct Camera
@@ -151,12 +151,23 @@
 
 	void MouseMotionEvent(int x, int y)
 	{
-		int dx = x - width / 2;
-		int dy = y - height / 2;
+		int dx = lastX - x;
+		int dy = lastY - y;
+
+		lastX = x;
+		lastY = y;
+
+		if (jump)
+		{
+			jump = false;
+			return;
+		}
+
 		if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
 		{
 			camera.rotY += dx / 10.0f;
 			camera.rotX += dy / 10.0f;
+			jump = true;
 			glutWarpPointer(width / 2, height / 2);
 		}
 	}
