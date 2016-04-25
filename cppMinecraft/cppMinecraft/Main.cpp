@@ -3,9 +3,9 @@
 /*-------------------------------------------------------------------------*/
 
 #define _USE_MATH_DEFINES
+#define STB_IMAGE_IMPLEMENTATION
 #include "GL/freeglut.h"
 #include "Cube.h"
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include <vector>
 #include <cstdio>
@@ -21,6 +21,7 @@
 	int lastX, lastY = 0;
 	bool jump = false;
 	std::vector<Cube> cubeList;
+	GLuint grassID, blockID;
 
 	struct Camera
 	{
@@ -95,19 +96,22 @@
 		SetupWindow();
 
 		//*Ground
-		glColor3f(0.1f, 1.0f, 0.2f);
+		glBindTexture(GL_TEXTURE_2D, grassID);
+		glEnable(GL_TEXTURE_2D);
+
 		glBegin(GL_QUADS);
-		glVertex3f(-15, -1, -15);
-		glVertex3f(15, -1, -15);
-		glVertex3f(15, -1, 15);
-		glVertex3f(-15, -1, 15);
+			glTexCoord2f(0, 0); glVertex3f(-15, -1, -15);
+			glTexCoord2f(0, 10); glVertex3f(15, -1, -15);
+			glTexCoord2f(10, 10); glVertex3f(15, -1, 15);
+			glTexCoord2f(10, 0); glVertex3f(-15, -1, 15);
 		glEnd();
 		
+		//blocks
 		for (std::vector<Cube>::iterator it = cubeList.begin(); it != cubeList.end(); ++it) 
 		{
 			it->draw();
 		}
-				
+						
 		glFlush();
 		glutSwapBuffers();
 	}
@@ -186,6 +190,30 @@ int main(int argc, char *argv[])
 
 	memset(keys, 0, sizeof(keys));
 	glEnable(GL_DEPTH_TEST);
+
+	//texture
+	glGenTextures(1, &grassID);
+	glBindTexture(GL_TEXTURE_2D, grassID);
+	int grassWidth, grassHeight, grassbpp;
+	stbi_uc* imgData = stbi_load("grass.jpg", &grassWidth, &grassHeight, &grassbpp, 4);
+	if (!imgData)
+		printf("%s\n", stbi_failure_reason());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, grassWidth, grassHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	stbi_image_free(imgData);
+
+	glGenTextures(1, &blockID);
+	glBindTexture(GL_TEXTURE_2D, blockID);
+	int blockWidth, blockHeight, blockbpp;
+	stbi_uc* imgData1 = stbi_load("grass.jpg", &blockWidth, &blockHeight, &blockbpp, 4);
+	if (!imgData1)
+		printf("%s\n", stbi_failure_reason());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, blockWidth, blockHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData1);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	stbi_image_free(imgData1);
+	//end texture
 
 	glutIdleFunc(Idle);
 	glutDisplayFunc(PaintComponent);

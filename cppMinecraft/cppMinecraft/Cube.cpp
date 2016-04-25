@@ -54,48 +54,48 @@ void Cube::draw()
 		glVertex3f(size + posX, size, -size);
 		glVertex3f(-size + posX, size, -size);
 		glVertex3f(-size + posX, -size, -size);
-		glEnd();
+//		glEnd();
 
 		// BACK
-		glBegin(GL_QUADS);
+//		glBegin(GL_QUADS);
 		glColor3f(color[1].getRed(), color[1].getGreen(), color[1].getBlue());
-		glVertex3f(size + posX, -size + posY, size);
-		glVertex3f(size + posX, size + posY, size);
-		glVertex3f(-size + posX, size + posY, size);
-		glVertex3f(-size + posX, -size + posY, size);
-		glEnd();
+		glVertex3f(size + posX, -size, size + posY);
+		glVertex3f(size + posX, size, size + posY);
+		glVertex3f(-size + posX, size, size + posY);
+		glVertex3f(-size + posX, -size, size + posY);
+//		glEnd();
 
 		// LEFT
-		glBegin(GL_QUADS);
+//		glBegin(GL_QUADS);
 		glColor3f(color[2].getRed(), color[2].getGreen(), color[2].getBlue());
 		glVertex3f(-size + posX, -size + posY, size);
 		glVertex3f(-size + posX, size + posY, size);
 		glVertex3f(-size + posX, size + posY, -size);
 		glVertex3f(-size + posX, -size + posY, -size);
-		glEnd();
+//		glEnd();
 
 		// RIGHT
-		glBegin(GL_QUADS);
+//		glBegin(GL_QUADS);
 		glColor3f(color[3].getRed(), color[3].getGreen(), color[3].getBlue());
 		glVertex3f(size + posX, -size + posY, -size);
 		glVertex3f(size + posX, size + posY, -size);
 		glVertex3f(size + posX, size + posY, size);
 		glVertex3f(size + posX, -size + posY, size);
-		glEnd();
+//		glEnd();
 
 
 
 		// TOP
-		glBegin(GL_QUADS);
+//		glBegin(GL_QUADS);
 		glColor3f(color[4].getRed(), color[4].getGreen(), color[4].getBlue());
 		glVertex3f(size + posX, size + posY, size);
 		glVertex3f(size + posX, size + posY, -size);
 		glVertex3f(-size + posX, size + posY, -size);
 		glVertex3f(-size + posX, size + posY, size);
-		glEnd();
+//		glEnd();
 
 		// BOTTOM
-		glBegin(GL_QUADS);
+//		glBegin(GL_QUADS);
 		glColor3f(color[5].getRed(), color[5].getGreen(), color[5].getBlue());
 		glVertex3f(size + posX, -size + posY, -size);
 		glVertex3f(size + posX, -size + posY, size);
