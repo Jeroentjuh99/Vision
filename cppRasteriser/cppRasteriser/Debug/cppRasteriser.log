@@ -1,5 +1,1 @@
-﻿  Main.cpp
-c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(56): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(121): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\jeroe\desktop\map\school\vision\cpprasteriser\cpprasteriser\main.cpp(122): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  cppRasteriser.vcxproj -> C:\Users\jeroe\Desktop\map\school\Vision\cppRasteriser\Debug\cppRasteriser.exe
+﻿  cppRasteriser.vcxproj -> C:\Users\titat_000\Documents\Vision\cppRasteriser\Debug\cppRasteriser.exe

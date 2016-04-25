@@ -1,0 +1,5 @@
+﻿  Main.cpp
+c:\users\titat_000\documents\visual studio 2015\projects\cppminecraft\cppminecraft\main.cpp(49): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+c:\users\titat_000\documents\visual studio 2015\projects\cppminecraft\cppminecraft\main.cpp(77): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\titat_000\documents\visual studio 2015\projects\cppminecraft\cppminecraft\main.cpp(78): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  cppMinecraft.vcxproj -> c:\users\titat_000\documents\visual studio 2015\Projects\cppMinecraft\Debug\cppMinecraft.exe
