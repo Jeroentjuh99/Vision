@@ -12,12 +12,14 @@ public:
 	Cube();
 	Cube(float);
 
-	RGBColor getColor(Side cSide);
-	void setColor(Side cSide, RGBColor colorValue);
+	RGBColor getColor(Side);
+	void setColor(Side, RGBColor);
+	void setPosition(int, int);
 	void draw(void);
 private:
 	RGBColor color[6];
 	float size;
+	float posX, posY = 0;
 	void Init(float s);
 };
 
