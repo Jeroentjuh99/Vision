@@ -1,4 +1,13 @@
-﻿  Cube.cpp
-c:\users\jeroe\desktop\map\school\vision\cppminecraft\cppminecraft\cube.cpp(43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\jeroe\desktop\map\school\vision\cppminecraft\cppminecraft\cube.cpp(44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  cppMinecraft.vcxproj -> C:\Users\jeroe\Desktop\map\school\Vision\cppMinecraft\Debug\cppMinecraft.exe
+﻿  Main.cpp
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\main.cpp(79): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\main.cpp(121): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\main.cpp(122): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\main.cpp(175): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\main.cpp(224): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Cube.cpp
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\cube.cpp(43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\titat_000\documents\vision\cppminecraft\cppminecraft\cube.cpp(44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Color.cpp
+  Generating Code...
+  LINK : C:\Users\titat_000\Documents\Vision\cppMinecraft\Debug\cppMinecraft.exe not found or not built by the last incremental link; performing full link
+  cppMinecraft.vcxproj -> C:\Users\titat_000\Documents\Vision\cppMinecraft\Debug\cppMinecraft.exe
